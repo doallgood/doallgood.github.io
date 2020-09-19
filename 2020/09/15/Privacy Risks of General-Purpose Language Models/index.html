@@ -7,13 +7,118 @@
   
   <title>xxxue</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="通用语言模型的隐私风险（翻译）摘要最近，在自然语言处理(NLP)中为文本特征提取构建通用语言模型的新范例(例如Google的BERT和OpenAI的GPT-2)已经出现，这是自然语言处理系统中将文本转换为向量(即嵌入)以进行下游建模的标准过程，并开始在各种下游NLP任务和现实世界系统(例如Google的搜索引擎[6])中找到应用。 为了获得通用的文本嵌入，这些语言模型具有高度复杂的结构，具有数百万">
+<meta property="og:type" content="article">
 <meta property="og:title" content="xxxue">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2020/09/15/Privacy%20Risks%20of%20General-Purpose%20Language%20Models/index.html">
 <meta property="og:site_name" content="xxxue">
+<meta property="og:description" content="通用语言模型的隐私风险（翻译）摘要最近，在自然语言处理(NLP)中为文本特征提取构建通用语言模型的新范例(例如Google的BERT和OpenAI的GPT-2)已经出现，这是自然语言处理系统中将文本转换为向量(即嵌入)以进行下游建模的标准过程，并开始在各种下游NLP任务和现实世界系统(例如Google的搜索引擎[6])中找到应用。 为了获得通用的文本嵌入，这些语言模型具有高度复杂的结构，具有数百万">
 <meta property="og:locale">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600153801781.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600153783153.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600153828471.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600153847838.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600153890473.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600154094748.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600154076791.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600154110388.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600155062466.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600156067062.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600157303934.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600157338335.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600158261422.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600158301158.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600158458679.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600158483168.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600158600761.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600158794864.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600159007724.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600159031124.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600159107580.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600159277841.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600159305832.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600159438225.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600159565515.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600159815774.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600159837760.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600159892387.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600160273524.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600160305162.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600160382658.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600160401643.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600221495565.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600221599778.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600221804801.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600221824865.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600222247807.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600222771660.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600222787568.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600223417031.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600223445865.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600223997003.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600224091305.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600225411811.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600225559586.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600225678705.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600225699433.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600225716097.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600225730731.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600225823456.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600225852711.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600226365461.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600226663843.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600239464399.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600239571981.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600241508334.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600241533412.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600241573619.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600241900537.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600241996656.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600242011268.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600242051005.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600254282140.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600254461985.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600254487468.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600254519469.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600254609193.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600254800364.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600257476789.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600257690863.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600257814867.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600257869406.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600257985699.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600258003371.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600258094296.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600258299480.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600258379374.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600258566575.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600258610036.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600258629773.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600258843073.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600259096125.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600259131755.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600259072831.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600259048117.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600259445080.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600263197551.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600263252389.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600263422709.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600263886866.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600264175785.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600264492510.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600264543305.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600264200355.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600264562351.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600264971943.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600264888640.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600265060138.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600265012931.png">
+<meta property="og:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600305601354.png">
+<meta property="article:published_time" content="2020-09-15T04:20:35.091Z">
+<meta property="article:modified_time" content="2020-09-19T12:08:55.147Z">
 <meta property="article:author" content="薛晓萱">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/薛晓萱/AppData/Roaming/Typora/typora-user-images/1600153801781.png">
   
     <link rel="alternate" href="/atom.xml" title="xxxue" type="application/atom+xml">
   
@@ -62,58 +167,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/19/hello-world/" class="article-date">
-  <time datetime="2020-09-19T09:14:20.583Z" itemprop="datePublished">2020-09-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/19/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/09/19/hello-world/" data-id="ckf9glef10000xwtrctwt92vq" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Privacy Risks of General-Purpose Language Models" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Privacy Risks of General-Purpose Language Models" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/15/Privacy%20Risks%20of%20General-Purpose%20Language%20Models/" class="article-date">
   <time datetime="2020-09-15T04:20:35.091Z" itemprop="datePublished">2020-09-15</time>
@@ -279,11 +333,23 @@
     </footer>
   </div>
   
-</article>
-
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/19/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
-
+</article>
 
 </section>
         
