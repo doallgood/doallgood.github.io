@@ -150,6 +150,10 @@
 	
 
 	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
 </ul>
 	</div>
 	
@@ -157,19 +161,7 @@
 		<ul id="global-social">
 	
 		<li>
-			<a href="http://github.com/" target="_blank">
-				<span class="icon-one"><span class="path1"></span><span class="path2"></span></span>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
-				<span class="icon-zhihu"></span>
-			</a>
-		</li>
-	
-		<li>
-			<a href="http://github.com/" target="_blank">
+			<a href="https://github.com/doallgood" target="_blank">
 				<span class="icon-github"></span>
 			</a>
 		</li>
@@ -195,12 +187,6 @@
 		<li>
 			<a href="http://github.com/" target="_blank">
 				<span class="icon-twitter"></span>
-			</a>
-		</li>
-	
-		<li>
-			<a href="/atom.xml" target="_blank">
-				<span class="icon-rss"></span>
 			</a>
 		</li>
 			
@@ -315,11 +301,11 @@
 <li>在公开领域的公共预料库中生成。然后对于语料库中的每个<em>x</em>应用算法$P$得到标签$P(x_i)$。</li>
 </ul>
 <p><strong>2、查询语言模型</strong></p>
-<p>该阶段是将<em>Dext</em>中的句子转化为相应的嵌入，得到训练集<br>$<br>D_{train}:=\left { \left ( z_i,P\left ( x_i \right ) \right ) \right }_{N}^{i=1}<br>$<br> 其中$z_i$是与句子$x_i$对应的嵌入。</p>
+<p>该阶段是将<em>Dext</em>中的句子转化为相应的嵌入，得到训练集<br>$$<br>D_{train}:=\left { \left ( z_i,P\left ( x_i \right ) \right ) \right }_{N}^{i=1}<br>$$<br> 其中$z_i$是与句子$x_i$对应的嵌入。</p>
 <p><strong>3、训练攻击模型</strong></p>
 <p>通常将模型训练为分类器，即以句子嵌入$z_i$为输入，输出所有敏感信息可能值的概率向量$g(z_i)$。根据攻击者的不同知识水平，分类器的选择也会不同。</p>
 <p><strong>4、推断</strong></p>
-<p>训练完模型后，给定目标句子的嵌入$z$，攻击者会根据以下的等式推断敏感信息$s:=A\left ( z \right )=argmax x_{i\in \left { 1,2,…,K \right }}\left [ g\left ( z \right ) \right ]_i$    </p>
+<p>训练完模型后，给定目标句子的嵌入$z$，攻击者会根据以下的等式推断敏感信息<br>$$s:=A\left ( z \right )=argmax x_{i\in \left { 1,2,…,K \right }}\left [ g\left ( z \right ) \right ]_i$$   </p>
 <h4 id="模式重建攻击"><a href="#模式重建攻击" class="headerlink" title="模式重建攻击"></a>模式重建攻击</h4><p>论文中将模式重建攻击定义为恢复具有固定格式的纯文本的特定段，例如身份证号、基因组序列中的某些特定片段可能会含有敏感信等。在该部分，论文作者假定攻击者了解文本的生成规则，并且可以使用生成算法来准备外部语料库。</p>
 <p>论文中以中国大陆的身份证号和基因组序列作为实例来进行攻击实验。</p>
 <p><strong>1、身份证号</strong></p>
@@ -650,6 +636,10 @@
 	
 
 	
+		<li class="menu-search">
+			<a href="javascript:;" class="popup-trigger">搜索</a>
+		</li>
+	
 </ul>
 	</div>
 
@@ -712,6 +702,10 @@
 
 <!-- love effect -->
 
+	
+<script src="/plugin/love/love.js"></script>
+
+
 
 <!-- back to top -->
 
@@ -758,6 +752,56 @@
 	
 
   
+
+	<!--
+	时间：2018-10-3
+	描述：
+		插件名称：hexo-generator-search-zip
+		插件来源: https://github.com/SuperKieran/hexo-generator-search-zip
+		代码参考：https://github.com/SuperKieran/TKL/blob/master/layout/_partial/search.ejs(Include: js & css)	
+-->
+<div class="popup search-popup local-search-popup scrollbar" >
+	<div class="local-search-container">
+		<span class="popup-btn-close">
+      		ESC
+   		</span>
+		<div class="local-search-header">
+			<div class="input-prompt">				
+			</div>
+			<input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+		</div>
+		<div class="local-search-body">
+			<div id="local-search-output"></div>
+		</div>
+		<div class="local-search-footer">
+			<div class="topN-post">				
+				
+								
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="/plugin/search/ziploader.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script type="text/javascript">
+	var search_path = 'search.json',
+		zip_Path = '/search.zip',
+		version_Path = '/searchVersion.txt',
+		input_Trigger = 'auto',
+		top_N = '2';
+
+	themeLocalSearch({
+		search_path, 
+		zip_Path, 
+		version_Path, 
+		input_Trigger, 
+		top_N
+	});
+</script>
 
 
 
