@@ -323,11 +323,14 @@
 <li>在公开领域的公共预料库中生成。然后对于语料库中的每个<em>x</em>应用算法$P$得到标签$P(x_i)$。</li>
 </ul>
 <p><strong>2、查询语言模型</strong></p>
-<p>该阶段是将<em>Dext</em>中的句子转化为相应的嵌入，得到训练集<br>$$<br>D_{train}:=\left { \left ( z_i,P\left ( x_i \right ) \right ) \right }_{N}^{i=1}<br>$$<br> 其中$z_i$是与句子$x_i$对应的嵌入。</p>
+<p>该阶段是将<em>Dext</em>中的句子转化为相应的嵌入，得到训练集</p>
+<p><img src="https://github.com/doallgood/IMG/raw/master/hexo/Privacy%20Risks/%E5%85%AC%E5%BC%8F1.PNG"></p>
+<p> 其中$z_i$是与句子$x_i$对应的嵌入。</p>
 <p><strong>3、训练攻击模型</strong></p>
 <p>通常将模型训练为分类器，即以句子嵌入$z_i$为输入，输出所有敏感信息可能值的概率向量$g(z_i)$。根据攻击者的不同知识水平，分类器的选择也会不同。</p>
 <p><strong>4、推断</strong></p>
-<p>训练完模型后，给定目标句子的嵌入$z$，攻击者会根据以下的等式推断敏感信息<br>$$s:=A\left ( z \right )=argmax x_{i\in \left { 1,2,…,K \right }}\left [ g\left ( z \right ) \right ]_i$$   </p>
+<p>训练完模型后，给定目标句子的嵌入$z$，攻击者会根据以下的等式推断敏感信息</p>
+<p><img src="https://github.com/doallgood/IMG/raw/master/hexo/Privacy%20Risks/%E5%85%AC%E5%BC%8F2.PNG"></p>
 <h4 id="模式重建攻击"><a href="#模式重建攻击" class="headerlink" title="模式重建攻击"></a>模式重建攻击</h4><p>论文中将模式重建攻击定义为恢复具有固定格式的纯文本的特定段，例如身份证号、基因组序列中的某些特定片段可能会含有敏感信等。在该部分，论文作者假定攻击者了解文本的生成规则，并且可以使用生成算法来准备外部语料库。</p>
 <p>论文中以中国大陆的身份证号和基因组序列作为实例来进行攻击实验。</p>
 <p><strong>1、身份证号</strong></p>
