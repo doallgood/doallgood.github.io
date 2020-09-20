@@ -284,8 +284,8 @@
 			<h4 id="论文题目：Enriching-Pre-trained-Language-Model-with-Entity-Information-for-Relation-Classification"><a href="#论文题目：Enriching-Pre-trained-Language-Model-with-Entity-Information-for-Relation-Classification" class="headerlink" title="论文题目：Enriching Pre-trained Language Model with Entity Information for Relation Classification"></a><strong>论文题目</strong>：Enriching Pre-trained Language Model with Entity Information for Relation Classification</h4><p>论文原作者：Shanchan Wu，Yifan He ， Alibaba Group (U.S.) Inc., Sunnyvale, CA</p>
 <p>原文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1905.08284.pdf">https://arxiv.org/pdf/1905.08284.pdf</a></p>
 <p>github：<a target="_blank" rel="noopener" href="https://github.com/monologg/R-BERT">https://github.com/monologg/R-BERT</a></p>
-<h4 id="摘要译文"><a href="#摘要译文" class="headerlink" title="摘要译文"></a>摘要译文</h4><pre><code>    关系分类是提取实体之间关系的重要NLP任务。 关系分类的最新方法主要基于卷积或递归神经网络。 最近，经过预训练的BERT模型在许多NLP分类/序列标签任务中都取得了非常成功的结果。 关系分类与这些任务不同，因为它依赖于句子和两个目标实体的信息。 在本文中，&lt;u&gt;我们提出了一个模型，该模型既利用预训练的BERT语言模型，又结合来自目标实体的信息来解决关系分类任务&lt;/u&gt;。我们定位目标实体，并通过预训练的结构和合并两个实体的对应编码来传递信息。相对于对于SemEval-2010 任务 8中关系数据集的最新方法，我们取得了显着改进。</code></pre>
-<h4 id="任务描述"><a href="#任务描述" class="headerlink" title="任务描述"></a>任务描述</h4><pre><code>    给定一个文本序列（通常是一个句子）和一对名词“e1” 和“e2”，目的是识别“e1”和“e2”之间的关系。例如名词“kitchen”和“house”之间的“组件-整体”关系：“The **[**kitchen**]e1** is the last renovated part of the **[**house**]e2**.”</code></pre>
+<h4 id="摘要译文"><a href="#摘要译文" class="headerlink" title="摘要译文"></a>摘要译文</h4><p>关系分类是提取实体之间关系的重要NLP任务。 关系分类的最新方法主要基于卷积或递归神经网络。 最近，经过预训练的BERT模型在许多NLP分类/序列标签任务中都取得了非常成功的结果。 关系分类与这些任务不同，因为它依赖于句子和两个目标实体的信息。 在本文中，<u>我们提出了一个模型，该模型既利用预训练的BERT语言模型，又结合来自目标实体的信息来解决关系分类任务</u>。我们定位目标实体，并通过预训练的结构和合并两个实体的对应编码来传递信息。相对于对于SemEval-2010 任务 8中关系数据集的最新方法，我们取得了显着改进。</p>
+<h4 id="任务描述"><a href="#任务描述" class="headerlink" title="任务描述"></a>任务描述</h4><p>给定一个文本序列（通常是一个句子）和一对名词“e1” 和“e2”，目的是识别“e1”和“e2”之间的关系。例如名词“kitchen”和“house”之间的“组件-整体”关系：“The <strong>[**kitchen</strong>]e1** is the last renovated part of the <strong>[**house</strong>]e2**.”</p>
 <h4 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h4><ul>
 <li>先在两个目标实体的前后插入特殊token即符号“$”和”#“，然后再将文本输入BERT以进行fine-tuning，以识别两个目标实体的位置并将信息传递到BERT模型中。</li>
 <li>然后在BERT模型的输出embedding中找到两个目标实体的位置。</li>
@@ -296,15 +296,15 @@
 <h4 id="模型框架"><a href="#模型框架" class="headerlink" title="模型框架"></a>模型框架</h4><p><img src="https://img-blog.csdnimg.cn/20200421200331817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NDA0NTE0,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <ol>
 <li><p>模型输入为包含两个目标实体的单个句子，其中使用＄标识第一个实体，使用#标识第二个实体，并且在开头添加[CLS]输入到bert里面。</p>
-<p>输入示例：<img src="https://img-blog.csdnimg.cn/20200421200407958.png" alt="在这里插入图片描述" style="zoom:50%;" /></p>
+<p>输入示例：<img src="https://img-blog.csdnimg.cn/20200421200407958.png" alt="在这里插入图片描述" style="zoom: 80%;" /></p>
 </li>
 <li><p>bert处理之后对应每个单词产生字向量。其中H0代表了[CLS]的embedding。由于BERT的特性，[CLS]可以代表整个句子的语义。实体1表示为对向量Hi到Hj取平均值，然后是一个全连接加激活函数。实体2是从向量Hk到Hm，处理过程与实体1相似。</p>
 <p>以上过程数学公式分别为：</p>
-<img src="https://img-blog.csdnimg.cn/202004212005124.png#pic_center" alt="在这里插入图片描述" style="zoom:50%;" />
-<img src="https://img-blog.csdnimg.cn/20200421200533495.png#pic_center" alt="在这里插入图片描述" style="zoom:50%;" />
+<img src="https://img-blog.csdnimg.cn/202004212005124.png#pic_center" alt="在这里插入图片描述" style="zoom: 80%;" />
+<img src="https://img-blog.csdnimg.cn/20200421200533495.png#pic_center" alt="在这里插入图片描述" style="zoom: 80%;" />
 </li>
 <li><p>将H’0、H′1、H’2进行拼接，再经过以一个全连接和softmax求得最终结果。</p>
-<img src="https://img-blog.csdnimg.cn/20200421200602451.png#pic_center" alt="在这里插入图片描述" style="zoom: 50%;" />
+<img src="https://img-blog.csdnimg.cn/20200421200602451.png#pic_center" alt="在这里插入图片描述" style="zoom: 80%;" />
 
 </li>
 </ol>
